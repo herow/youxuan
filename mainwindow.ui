@@ -27,6 +27,7 @@
     <property name="title">
      <string>整治模式优选 </string>
     </property>
+    <addaction name="youxuanaction"/>
    </widget>
    <addaction name="actionYouxuan"/>
   </widget>
@@ -39,6 +40,11 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="youxuanaction">
+   <property name="text">
+    <string>模式优选</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

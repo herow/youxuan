@@ -34,7 +34,13 @@
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="comboBox"/>
+        <widget class="QComboBox" name="comboBox">
+         <item>
+          <property name="text">
+           <string>小刘</string>
+          </property>
+         </item>
+        </widget>
        </item>
       </layout>
      </item>
@@ -48,7 +54,13 @@
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="comboBox_2"/>
+        <widget class="QComboBox" name="comboBox_2">
+         <item>
+          <property name="text">
+           <string>小黑</string>
+          </property>
+         </item>
+        </widget>
        </item>
       </layout>
      </item>
@@ -78,7 +90,7 @@
      <attribute name="label">
       <string>整治需求判断</string>
      </attribute>
-     <widget class="QToolButton" name="toolButton">
+     <widget class="QToolButton" name="btnKongxinStatus">
       <property name="geometry">
        <rect>
         <x>140</x>
@@ -316,10 +328,10 @@
      <attribute name="label">
       <string>整治工作开展</string>
      </attribute>
-     <widget class="QToolButton" name="toolButton_3">
+     <widget class="QToolButton" name="btnSurveyForm">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>30</x>
         <y>10</y>
         <width>91</width>
         <height>21</height>
@@ -329,10 +341,10 @@
        <string>访问问卷调查</string>
       </property>
      </widget>
-     <widget class="QToolButton" name="toolButton_4">
+     <widget class="QToolButton" name="btnPictureCollet">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>130</x>
         <y>10</y>
         <width>91</width>
         <height>21</height>
@@ -342,10 +354,10 @@
        <string>数据图件收集</string>
       </property>
      </widget>
-     <widget class="QToolButton" name="toolButton_5">
+     <widget class="QToolButton" name="btnSemiStructSurvey">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>30</x>
         <y>40</y>
         <width>91</width>
         <height>21</height>
@@ -355,10 +367,10 @@
        <string>半结构式访谈</string>
       </property>
      </widget>
-     <widget class="QToolButton" name="toolButton_6">
+     <widget class="QToolButton" name="btnSpecStatus">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>130</x>
         <y>40</y>
         <width>91</width>
         <height>21</height>
@@ -368,10 +380,10 @@
        <string>当地特殊情况</string>
       </property>
      </widget>
-     <widget class="QToolButton" name="toolButton_7">
+     <widget class="QToolButton" name="btnProblemStrategy">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>30</x>
         <y>70</y>
         <width>191</width>
         <height>21</height>
@@ -383,10 +395,18 @@
      </widget>
     </widget>
     <widget class="QWidget" name="page_3">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>301</width>
+       <height>193</height>
+      </rect>
+     </property>
      <attribute name="label">
       <string>整治方案制定</string>
      </attribute>
-     <widget class="QToolButton" name="toolButton_8">
+     <widget class="QToolButton" name="btnInitStrategy">
       <property name="geometry">
        <rect>
         <x>40</x>
@@ -399,7 +419,20 @@
        <string>初步方案生成</string>
       </property>
      </widget>
-     <widget class="QToolButton" name="toolButton_9">
+     <widget class="QToolButton" name="btnFinalSolution">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>100</y>
+        <width>161</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>整治方案确定</string>
+      </property>
+     </widget>
+     <widget class="QToolButton" name="btnPublicOpinion">
       <property name="geometry">
        <rect>
         <x>40</x>
@@ -412,7 +445,7 @@
        <string>村民意见收集</string>
       </property>
      </widget>
-     <widget class="QToolButton" name="toolButton_10">
+     <widget class="QToolButton" name="btnGovOpinion">
       <property name="geometry">
        <rect>
         <x>40</x>
@@ -423,19 +456,6 @@
       </property>
       <property name="text">
        <string>政府部门要求</string>
-      </property>
-     </widget>
-     <widget class="QToolButton" name="toolButton_11">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>100</y>
-        <width>161</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>整治方案确定</string>
       </property>
      </widget>
     </widget>

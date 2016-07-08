@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>核心问题研判与对应策略选择</string>
   </property>
   <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
@@ -220,11 +220,6 @@ p, li { white-space: pre-wrap; }
     <string>核心问题研判与对应策略选择：</string>
    </property>
   </widget>
-  <zorder>tabWidget</zorder>
-  <zorder>tableWidget</zorder>
-  <zorder>label</zorder>
-  <zorder>tabWidget_2</zorder>
-  <zorder>label_2</zorder>
  </widget>
  <resources/>
  <connections/>

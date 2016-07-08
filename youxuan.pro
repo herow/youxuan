@@ -24,20 +24,22 @@ SOURCES += main.cpp\
     wenti_celueform.cpp \
     chubufanganform.cpp \
     cunminyijianform.cpp \
-    zhengfuyaoqiuform.cpp
+    zhengfuyaoqiuform.cpp \
+    finalfanganform.cpp
 
 HEADERS  += mainwindow.h \
     youxuanform.h \
     youxuandockwidget.h \
     kongxinstatus.h \
     imagecollection.h \
-    fangtang.h \
     diaochaform.h \
     teshustatusform.h \
     wenti_celueform.h \
     chubufanganform.h \
     cunminyijianform.h \
-    zhengfuyaoqiuform.h
+    zhengfuyaoqiuform.h \
+    finalfanganform.h \
+    fangtang.h
 
 FORMS    += mainwindow.ui \
     youxuanform.ui \
@@ -50,4 +52,5 @@ FORMS    += mainwindow.ui \
     wenti_celueform.ui \
     chubufanganform.ui \
     cunminyijianform.ui \
-    zhengfuyaoqiuform.ui
+    zhengfuyaoqiuform.ui \
+    finalfanganform.ui
