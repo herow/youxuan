@@ -2,6 +2,7 @@
 #define YOUXUANDOCKWIDGET_H
 
 #include <QDockWidget>
+class QDataWidgetMapper;
 
 namespace Ui {
 class YouXuanDockWidget;
@@ -28,7 +29,9 @@ private slots:
     void show_PublicOpinion();
     void show_GovOpinion();
     void show_FinalSolution();
-
+private:
+    bool createConnetion();
+    QDataWidgetMapper *mapper;
 };
 
 #endif // YOUXUANDOCKWIDGET_H

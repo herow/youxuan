@@ -6,6 +6,7 @@ KongXinStatus::KongXinStatus(QWidget *parent) :
     ui(new Ui::KongXinStatus)
 {
     ui->setupUi(this);
+
 }
 
 KongXinStatus::~KongXinStatus()

@@ -10,6 +10,18 @@
 #include "cunminyijianform.h"
 #include "zhengfuyaoqiuform.h"
 #include "finalfanganform.h"
+#include "connection.h"
+
+#include "comboboxdelegate.h"
+#include "horizontal_proxy_model.h"
+#include <QSqlDatabase>
+#include <QMessageBox>
+#include <QSqlDatabase>
+#include <QSqlError>
+#include <QSqlQuery>
+#include <QtSql>
+#include <QtGui>
+
 YouXuanDockWidget::YouXuanDockWidget(QWidget *parent) :
     QDockWidget(parent),
     ui(new Ui::YouXuanDockWidget)
@@ -30,6 +42,31 @@ YouXuanDockWidget::YouXuanDockWidget(QWidget *parent) :
     connect( ui->btnGovOpinion, SIGNAL(clicked()), this, SLOT( show_GovOpinion() ) );
     connect( ui->btnFinalSolution, SIGNAL(clicked()), this, SLOT( show_FinalSolution() ) );
 
+    if (!createConnection())
+        return  ;
+    QSqlTableModel *model= new QSqlTableModel;
+    model->setTable("test");
+    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    model->select();
+
+    mapper = new QDataWidgetMapper(this);
+    mapper->setModel(model);
+    mapper->setItemDelegate(new ComboBoxDelegate(this));
+    mapper->addMapping(ui->comboxKongxc, model->fieldIndex("field3"));
+    mapper->addMapping(ui->comboxZhengzhi, model->fieldIndex("field4"));
+    mapper->addMapping(ui->lineEditZonghushu, model->fieldIndex("field5"));
+    mapper->addMapping(ui->lineEditTongyi, model->fieldIndex("field6"));
+    mapper->addMapping(ui->lineEditFandui, model->fieldIndex("field7"));
+    mapper->addMapping(ui->comboxGaizaoyiyuan, model->fieldIndex("field8"));
+
+    mapper->toFirst();
+
+
+
+    QTableView *view = new QTableView;
+    view->setModel(model);
+    view->show();
+
 }
 
 YouXuanDockWidget::~YouXuanDockWidget()
@@ -39,13 +76,69 @@ YouXuanDockWidget::~YouXuanDockWidget()
 
 void YouXuanDockWidget::show_kongxin_status()
 {
-     KongXinStatus * wid = new KongXinStatus();
-     wid->show();
+//     KongXinStatus * wid = new KongXinStatus(this);
+//     wid->show();
+    QSqlQueryModel *model= new QSqlTableModel;
+    // Set character encoding to UTF8
+
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+     QTextCodec *codec =QTextCodec::codecForName("UTF-8");
+    const char * str = "空心化程度";
+    const char * strCunname = "村名称";
+    const char * strXiangname = "乡名称";
+    QString tableName=codec->toUnicode(str);
+    QString cunName=codec->toUnicode(strCunname);
+    QString xiangName=codec->toUnicode(strXiangname);
+
+     QString fullSql;
+     fullSql = QString( "select * from '%1' where `%2`='%3' and `%4`='%5'" )
+             .arg( tableName ).arg(cunName).arg(ui->comboBoxCunname->currentText())
+             .arg(xiangName).arg(ui->comboBoxXiangname->currentText());
+   // QMessageBox::information(NULL, "Title", fullSql, QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+
+     model->setQuery(fullSql) ;//where id=101
+//    model->setHeaderData(0, Qt::Horizontal, QObject::tr("乡名称"));
+//    model->setHeaderData(1, Qt::Horizontal, QObject::tr("村名称"));
+//    model->setHeaderData(2, Qt::Horizontal, QObject::tr("常住人口比重"));
+//    model->setHeaderData(3, Qt::Horizontal, QObject::tr("废弃率"));
+//    model->setHeaderData(4, Qt::Horizontal, QObject::tr("空置率"));
+//    model->setHeaderData(4, Qt::Horizontal, QObject::tr("空废宗地聚集度"));
+    Horizontal_proxy_model* proxy_model = new Horizontal_proxy_model();
+    proxy_model->setSourceModel(model);
+
+    QTableView *view = new QTableView;
+    view->setModel(proxy_model);
+    view->horizontalHeader()->hide();
+    view->show();
 }
 void YouXuanDockWidget::show_surveyForm()
 {
-     DiaoChaForm * wid = new DiaoChaForm();
-     wid->show();
+    QSqlQueryModel *model= new QSqlTableModel;
+    // Set character encoding to UTF8
+
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+    QTextCodec *codec =QTextCodec::codecForName("UTF-8");
+    const char * str = "调查问卷";
+    const char * strCunname = "村名称";
+    const char * strXiangname = "乡名称";
+    QString tableName=codec->toUnicode(str);
+    QString cunName=codec->toUnicode(strCunname);
+    QString xiangName=codec->toUnicode(strXiangname);
+
+    QString fullSql;
+    fullSql = QString( "select * from '%1' where `%2`='%3' and `%4`='%5'" )
+             .arg( tableName ).arg(cunName).arg(ui->comboBoxCunname->currentText())
+             .arg(xiangName).arg(ui->comboBoxXiangname->currentText());
+   // QMessageBox::information(NULL, "Title", fullSql, QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+
+    model->setQuery(fullSql) ;//where id=101
+
+
+
+    QTableView *view = new QTableView;
+    view->setModel(model);
+    //view->horizontalHeader()->hide();
+    view->show();
 }
 void YouXuanDockWidget::show_picturecollect()
 {
@@ -54,8 +147,35 @@ void YouXuanDockWidget::show_picturecollect()
 }
 void YouXuanDockWidget::show_semisurvey()
 {
-     fangtang * wid = new fangtang();
-     wid->show();
+
+//     wid->show();
+    QSqlQueryModel *model= new QSqlTableModel;
+    // Set character encoding to UTF8
+
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+    QTextCodec *codec =QTextCodec::codecForName("UTF-8");
+    const char * str = "半结构化访谈";
+    const char * strcaption = "标题";
+    const char * strCunname = "村名称";
+    const char * strXiangname = "乡名称";
+    QString tableName=codec->toUnicode(str);
+    QString  caption =codec->toUnicode(strcaption);
+    QString cunName=codec->toUnicode(strCunname);
+    QString xiangName=codec->toUnicode(strXiangname);
+
+    QString fullSql;
+    fullSql = QString( "select `%1` from '%2' where `%3`='%4' and `%5`='%6'" )
+             .arg(caption).arg( tableName ).arg(cunName).arg(ui->comboBoxCunname->currentText())
+             .arg(xiangName).arg(ui->comboBoxXiangname->currentText());
+   // QMessageBox::information(NULL, "Title", fullSql, QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+
+    model->setQuery(fullSql) ;//where id=101
+
+
+    fangtang * wid = new fangtang(model,this);
+//    QTableView *view = new QTableView;
+//    view->setModel(model);
+
 }
 void YouXuanDockWidget::show_specstatus()
 {
@@ -86,4 +206,18 @@ void YouXuanDockWidget::show_FinalSolution()
 {
     FinalFanganForm * wid = new FinalFanganForm();
     wid->show();
+}
+bool YouXuanDockWidget::createConnetion()
+{
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("demo.db");
+    if (!db.open()) {
+        QMessageBox::critical(0, qApp->tr("Cannot open database"),
+            qApp->tr("Unable to establish a database connection.\n"
+                     "This example needs SQLite support. Please read "
+                     "the Qt SQL driver documentation for information how "
+                     "to build it.\n\n"
+                     "Click Cancel to exit."), QMessageBox::Cancel);
+
+    }
 }

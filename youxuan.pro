@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,7 +25,9 @@ SOURCES += main.cpp\
     chubufanganform.cpp \
     cunminyijianform.cpp \
     zhengfuyaoqiuform.cpp \
-    finalfanganform.cpp
+    finalfanganform.cpp \
+    comboboxdelegate.cpp \
+    horizontal_proxy_model.cpp
 
 HEADERS  += mainwindow.h \
     youxuanform.h \
@@ -39,7 +41,10 @@ HEADERS  += mainwindow.h \
     cunminyijianform.h \
     zhengfuyaoqiuform.h \
     finalfanganform.h \
-    fangtang.h
+    fangtang.h \
+    connection.h \
+    comboboxdelegate.h \
+    horizontal_proxy_model.h
 
 FORMS    += mainwindow.ui \
     youxuanform.ui \

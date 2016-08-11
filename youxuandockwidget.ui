@@ -34,10 +34,15 @@
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="comboBox">
+        <widget class="QComboBox" name="comboBoxXiangname">
          <item>
           <property name="text">
            <string>小刘</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>小李</string>
           </property>
          </item>
         </widget>
@@ -54,10 +59,20 @@
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="comboBox_2">
+        <widget class="QComboBox" name="comboBoxCunname">
          <item>
           <property name="text">
            <string>小黑</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>小红</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>小白</string>
           </property>
          </item>
         </widget>
@@ -76,7 +91,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="page">
      <property name="geometry">
@@ -116,71 +131,6 @@
        <string>是否为空心村 ？</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_4">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>60</y>
-        <width>111</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>是否为需要整治 ？</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="radioButton">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>30</y>
-        <width>41</width>
-        <height>19</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>是</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="radioButton_2">
-      <property name="geometry">
-       <rect>
-        <x>200</x>
-        <y>30</y>
-        <width>41</width>
-        <height>19</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>否</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="radioButton_3">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>60</y>
-        <width>41</width>
-        <height>19</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>是</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="radioButton_4">
-      <property name="geometry">
-       <rect>
-        <x>200</x>
-        <y>60</y>
-        <width>41</width>
-        <height>19</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>否</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_5">
       <property name="geometry">
        <rect>
@@ -193,6 +143,59 @@
       <property name="text">
        <string>空心化情况：</string>
       </property>
+     </widget>
+     <widget class="QComboBox" name="comboxKongxc">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>30</y>
+        <width>78</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>否</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>是</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>60</y>
+        <width>101</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>是否需要整治 ？</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboxZhengzhi">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>60</y>
+        <width>78</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>否</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>是</string>
+       </property>
+      </item>
      </widget>
     </widget>
     <widget class="QWidget" name="page_2">
@@ -220,20 +223,20 @@
        <string>总户数：</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit">
+     <widget class="QLineEdit" name="lineEditZonghushu">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>140</x>
         <y>10</y>
         <width>113</width>
         <height>23</height>
        </rect>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_2">
+     <widget class="QLineEdit" name="lineEditTongyi">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>140</x>
         <y>40</y>
         <width>113</width>
         <height>23</height>
@@ -266,10 +269,10 @@
        <string>反对改造户数：</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_3">
+     <widget class="QLineEdit" name="lineEditFandui">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>140</x>
         <y>70</y>
         <width>113</width>
         <height>23</height>
@@ -289,31 +292,25 @@
        <string>村民总体改造意愿：</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_9">
+     <widget class="QComboBox" name="comboxGaizaoyiyuan">
       <property name="geometry">
        <rect>
-        <x>150</x>
+        <x>140</x>
         <y>110</y>
-        <width>41</width>
-        <height>19</height>
+        <width>113</width>
+        <height>23</height>
        </rect>
       </property>
-      <property name="text">
-       <string>强</string>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="radioButton_10">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>110</y>
-        <width>41</width>
-        <height>19</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>弱</string>
-      </property>
+      <item>
+       <property name="text">
+        <string>弱</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>强</string>
+       </property>
+      </item>
      </widget>
     </widget>
     <widget class="QWidget" name="page_5">

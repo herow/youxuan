@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     connect( ui->youxuanaction, SIGNAL(triggered()), this, SLOT( showWizard() ) );
+
 }
 
 MainWindow::~MainWindow()
