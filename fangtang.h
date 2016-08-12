@@ -7,7 +7,8 @@ namespace Ui {
 class fangtang;
 }
 class QSqlQueryModel;
-class QModelIndex;
+//class QModelIndex;
+#include <QModelIndex>
 class fangtang : public QWidget
 {
     Q_OBJECT
@@ -20,6 +21,7 @@ private slots:
 
 private:
     Ui::fangtang *ui;
+    QSqlQueryModel *m_model;
 };
 
 #endif // FANGTANG_H

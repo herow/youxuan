@@ -14,6 +14,7 @@
 
 #include "comboboxdelegate.h"
 #include "horizontal_proxy_model.h"
+#include "view.h"
 #include <QSqlDatabase>
 #include <QMessageBox>
 #include <QSqlDatabase>
@@ -142,45 +143,84 @@ void YouXuanDockWidget::show_surveyForm()
 }
 void YouXuanDockWidget::show_picturecollect()
 {
-     ImageCollection * wid = new ImageCollection();
-     wid->show();
+//     ImageCollection * wid = new ImageCollection();
+//     wid->show();
+     View *view=new View("offices", "images");
+     QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+     QTextCodec *codec =QTextCodec::codecForName("UTF-8");
+     const char * str = "数据图件收集";
+     QString winName=codec->toUnicode(str);
+     view->setWindowTitle(winName);
+     view->show();
 }
 void YouXuanDockWidget::show_semisurvey()
 {
 
-//     wid->show();
     QSqlQueryModel *model= new QSqlTableModel;
     // Set character encoding to UTF8
 
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
     QTextCodec *codec =QTextCodec::codecForName("UTF-8");
     const char * str = "半结构化访谈";
-    const char * strcaption = "标题";
+    //const char * strcaption = "标题";
     const char * strCunname = "村名称";
     const char * strXiangname = "乡名称";
     QString tableName=codec->toUnicode(str);
-    QString  caption =codec->toUnicode(strcaption);
+  //  QString  caption =codec->toUnicode(strcaption);
     QString cunName=codec->toUnicode(strCunname);
     QString xiangName=codec->toUnicode(strXiangname);
 
     QString fullSql;
-    fullSql = QString( "select `%1` from '%2' where `%3`='%4' and `%5`='%6'" )
-             .arg(caption).arg( tableName ).arg(cunName).arg(ui->comboBoxCunname->currentText())
+    fullSql = QString( "select * from '%1' where `%2`='%3' and `%4`='%5'" )
+             .arg( tableName ).arg(cunName).arg(ui->comboBoxCunname->currentText())
              .arg(xiangName).arg(ui->comboBoxXiangname->currentText());
+//    fullSql = QString( "select `%1` from '%2' where `%3`='%4' and `%5`='%6'" )
+//             .arg(caption).arg( tableName ).arg(cunName).arg(ui->comboBoxCunname->currentText())
+//             .arg(xiangName).arg(ui->comboBoxXiangname->currentText());
    // QMessageBox::information(NULL, "Title", fullSql, QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
 
     model->setQuery(fullSql) ;//where id=101
 
 
-    fangtang * wid = new fangtang(model,this);
-//    QTableView *view = new QTableView;
-//    view->setModel(model);
+    fangtang * wid = new fangtang(model);
+    wid->setWindowTitle(tableName);
+    wid->show();
+
 
 }
 void YouXuanDockWidget::show_specstatus()
 {
-     TeShuStatusForm * wid = new TeShuStatusForm();
-     wid->show();
+
+        QSqlQueryModel *model= new QSqlTableModel;
+        // Set character encoding to UTF8
+
+        QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+        QTextCodec *codec =QTextCodec::codecForName("UTF-8");
+        const char * str = "当地特殊情况";
+        const char * strcaption = "标题";
+        const char * strCunname = "村名称";
+        const char * strXiangname = "乡名称";
+
+        QString tableName=codec->toUnicode(str);
+        QString  caption =codec->toUnicode(strcaption);
+        QString cunName=codec->toUnicode(strCunname);
+        QString xiangName=codec->toUnicode(strXiangname);
+
+        QString fullSql;
+        fullSql = QString( "select * from '%1' where `%2`='%3' and `%4`='%5'" )
+                 .arg( tableName ).arg(cunName).arg(ui->comboBoxCunname->currentText())
+                 .arg(xiangName).arg(ui->comboBoxXiangname->currentText());
+    //    fullSql = QString( "select `%1` from '%2' where `%3`='%4' and `%5`='%6'" )
+    //             .arg(caption).arg( tableName ).arg(cunName).arg(ui->comboBoxCunname->currentText())
+    //             .arg(xiangName).arg(ui->comboBoxXiangname->currentText());
+       // QMessageBox::information(NULL, "Title", fullSql, QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+
+        model->setQuery(fullSql) ;//where id=101
+
+
+        fangtang * wid = new fangtang(model);
+        wid->setWindowTitle(tableName);
+        wid->show();
 }
 void YouXuanDockWidget::show_ProblemStrategy()
 {

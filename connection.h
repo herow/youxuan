@@ -69,20 +69,20 @@ static bool createConnection()
         return false;
     }
 
-    QSqlQuery query(db);
-    bool bsuccess = query.exec("create table person (id int primary key, "
-               "firstname varchar(20), lastname varchar(20))");
-    query.exec("insert into person values(101, 'Danny', 'Young')");
-    query.exec("insert into person values(102, 'Christine', 'Holand')");
-    query.exec("insert into person values(103, 'Lars', 'Gordon')");
-    query.exec("insert into person values(104, 'Roberto', 'Robitaille')");
-    query.exec("insert into person values(105, 'Maria', 'Papadopoulos')");
-    if(!bsuccess)
-    {
-        qDebug()<<"table is error";
+//    QSqlQuery query(db);
+//    bool bsuccess = query.exec("create table person (id int primary key, "
+//               "firstname varchar(20), lastname varchar(20))");
+//    query.exec("insert into person values(101, 'Danny', 'Young')");
+//    query.exec("insert into person values(102, 'Christine', 'Holand')");
+//    query.exec("insert into person values(103, 'Lars', 'Gordon')");
+//    query.exec("insert into person values(104, 'Roberto', 'Robitaille')");
+//    query.exec("insert into person values(105, 'Maria', 'Papadopoulos')");
+//    if(!bsuccess)
+//    {
+//        qDebug()<<"table is error";
 
-    }
-//    db.close();
+//    }
+
 //    query.exec("create table offices (id int primary key,"
 //                                             "imagefile int,"
 //                                             "location varchar(20),"

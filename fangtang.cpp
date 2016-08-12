@@ -1,22 +1,33 @@
 #include "fangtang.h"
 #include "ui_fangtang.h"
 #include "qsqlquerymodel.h"
-#include <QModelIndex>
+
 fangtang::fangtang(QSqlQueryModel *model,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::fangtang)
 {
     ui->setupUi(this);
-    ui->tableViewCaption->setModel(model); // model先自己创建
+    m_model=model;
+    ui->tableViewCaption->setModel(m_model);
+    ui->tableViewCaption->hideColumn(0);
+    ui->tableViewCaption->hideColumn(1);
+    ui->tableViewCaption->hideColumn(3);
+    ui->tableViewCaption->horizontalHeader()->hide();
+    ui->tableViewCaption->selectRow(0);
+    QModelIndex detailIndex=m_model->index(0 ,3);
 
-      // table view双击后打开对话框
-    connect(ui->tableViewCaption, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(showDetail(QModelIndex)));
+    ui->textEdit->setText(m_model->data(detailIndex, Qt::EditRole).toString());
+
+    connect(ui->tableViewCaption, SIGNAL(clicked(QModelIndex)), this, SLOT(showDetail(QModelIndex)));
 }
 
 fangtang::~fangtang()
 {
     delete ui;
+    delete m_model;
 }
 void fangtang::showDetail(QModelIndex index) {
-    ui->textEdit->setText(index.model()->data(index, Qt::EditRole).toString());
+    QModelIndex detailIndex=m_model->index(index.row() ,index.column()+1);
+
+    ui->textEdit->setText(index.model()->data(detailIndex, Qt::EditRole).toString());
 }

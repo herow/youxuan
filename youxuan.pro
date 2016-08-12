@@ -27,7 +27,10 @@ SOURCES += main.cpp\
     zhengfuyaoqiuform.cpp \
     finalfanganform.cpp \
     comboboxdelegate.cpp \
-    horizontal_proxy_model.cpp
+    horizontal_proxy_model.cpp \
+    imageitem.cpp \
+    informationwindow.cpp \
+    view.cpp
 
 HEADERS  += mainwindow.h \
     youxuanform.h \
@@ -44,7 +47,10 @@ HEADERS  += mainwindow.h \
     fangtang.h \
     connection.h \
     comboboxdelegate.h \
-    horizontal_proxy_model.h
+    horizontal_proxy_model.h \
+    imageitem.h \
+    informationwindow.h \
+    view.h
 
 FORMS    += mainwindow.ui \
     youxuanform.ui \
