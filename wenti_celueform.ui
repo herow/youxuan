@@ -13,121 +13,25 @@
   <property name="windowTitle">
    <string>核心问题研判与对应策略选择</string>
   </property>
-  <widget class="QTabWidget" name="tabWidget">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>60</y>
-     <width>221</width>
-     <height>321</height>
-    </rect>
-   </property>
-   <property name="tabPosition">
-    <enum>QTabWidget::West</enum>
-   </property>
-   <property name="currentIndex">
-    <number>0</number>
-   </property>
-   <widget class="QWidget" name="tab">
-    <attribute name="title">
-     <string>空心化情况</string>
-    </attribute>
-    <widget class="QTableWidget" name="tableWidget">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>201</width>
-       <height>321</height>
-      </rect>
-     </property>
-     <row>
-      <property name="text">
-       <string>常住人口比重</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>废弃率</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>空置率</string>
-      </property>
-     </row>
-     <row>
-      <property name="text">
-       <string>空废宗地聚集度</string>
-      </property>
-     </row>
-     <column>
-      <property name="text">
-       <string>值</string>
-      </property>
-     </column>
-     <item row="0" column="0">
-      <property name="text">
-       <string>60</string>
-      </property>
-     </item>
-     <item row="1" column="0">
-      <property name="text">
-       <string>40</string>
-      </property>
-     </item>
-     <item row="2" column="0">
-      <property name="text">
-       <string>50</string>
-      </property>
-     </item>
-     <item row="3" column="0">
-      <property name="text">
-       <string>30</string>
-      </property>
-     </item>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="tab_2">
-    <attribute name="title">
-     <string>基础条件</string>
-    </attribute>
-   </widget>
-   <widget class="QWidget" name="tab_3">
-    <attribute name="title">
-     <string>发展等级</string>
-    </attribute>
-   </widget>
-   <widget class="QWidget" name="tab_4">
-    <attribute name="title">
-     <string>空间形态</string>
-    </attribute>
-   </widget>
-   <widget class="QWidget" name="tab_5">
-    <attribute name="title">
-     <string>特殊情况</string>
-    </attribute>
-   </widget>
-  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
      <x>20</x>
      <y>30</y>
-     <width>101</width>
+     <width>161</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>当地情况：</string>
+    <string>空心村综合整治对策：</string>
    </property>
   </widget>
-  <widget class="QTabWidget" name="tabWidget_2">
+  <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
     <rect>
-     <x>280</x>
+     <x>270</x>
      <y>60</y>
-     <width>221</width>
+     <width>231</width>
      <height>321</height>
     </rect>
    </property>
@@ -137,16 +41,16 @@
    <property name="currentIndex">
     <number>1</number>
    </property>
-   <widget class="QWidget" name="tab_6">
+   <widget class="QWidget" name="tab_1">
     <attribute name="title">
      <string>核心问题研判</string>
     </attribute>
-    <widget class="QTextEdit" name="textEdit">
+    <widget class="QTextEdit" name="textEditProblem">
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>191</width>
+       <width>201</width>
        <height>321</height>
       </rect>
      </property>
@@ -155,55 +59,32 @@
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;本村的核心问题主要有......&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;通过整治需求判断、访问问卷调查、以及相关到数据图件收集等一系列前期准备工作，经过分析，本村的核心问题主要有：&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="tab_7">
+   <widget class="QWidget" name="tab_2">
     <attribute name="title">
      <string>对应策略选择</string>
     </attribute>
-    <widget class="QTreeWidget" name="treeWidget">
+    <widget class="QTextEdit" name="textEditStrategy">
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>191</width>
+       <width>201</width>
        <height>321</height>
       </rect>
      </property>
-     <column>
-      <property name="text">
-       <string>策略选择</string>
-      </property>
-     </column>
-     <item>
-      <property name="text">
-       <string>坡度大于25度，不适宜居住，应迁出，原宅基地复垦为林地</string>
-      </property>
-      <property name="toolTip">
-       <string extracomment="不适宜居住，应迁出，原宅基地复垦为林地"/>
-      </property>
-      <property name="checkState">
-       <enum>Checked</enum>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>村庄分布密度一般，中心村整合</string>
-      </property>
-      <property name="checkState">
-       <enum>Checked</enum>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>土地覆盖为林地，不适宜开发建设</string>
-      </property>
-      <property name="checkState">
-       <enum>Checked</enum>
-      </property>
-     </item>
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;通过对本村的空心化程度及空心村类型进行诊断，并结合村庄所处外部环境及村庄自身发展条件，选取符合村庄实际情况到整治模式如下：&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
     </widget>
    </widget>
   </widget>
@@ -220,6 +101,20 @@ p, li { white-space: pre-wrap; }
     <string>核心问题研判与对应策略选择：</string>
    </property>
   </widget>
+  <widget class="QTableView" name="tableView">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>60</y>
+     <width>221</width>
+     <height>321</height>
+    </rect>
+   </property>
+  </widget>
+  <zorder>label</zorder>
+  <zorder>label_2</zorder>
+  <zorder>tableView</zorder>
+  <zorder>tabWidget</zorder>
  </widget>
  <resources/>
  <connections/>
