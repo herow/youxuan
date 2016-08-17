@@ -226,36 +226,47 @@ void YouXuanDockWidget::show_ProblemStrategy()
 {
 
     QSqlQueryModel *model= new QSqlTableModel;
+    QSqlTableModel *modelPro_Strategy= new QSqlTableModel;
     // Set character encoding to UTF8
 
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
      QTextCodec *codec =QTextCodec::codecForName("UTF-8");
-    const char * str = "空心化程度";
+    const char * strtable1 = "空心化程度";
+    const char * strtable2 = "核心问题与整治策略";
     const char * strCunname = "村名称";
     const char * strXiangname = "乡名称";
-    QString tableName=codec->toUnicode(str);
+    QString tableName1=codec->toUnicode(strtable1);
+    QString tableName2=codec->toUnicode(strtable2);
     QString cunName=codec->toUnicode(strCunname);
     QString xiangName=codec->toUnicode(strXiangname);
 
      QString fullSql;
      fullSql = QString( "select * from '%1' where `%2`='%3' and `%4`='%5'" )
-             .arg( tableName ).arg(cunName).arg(ui->comboBoxCunname->currentText())
+             .arg( tableName1 ).arg(cunName).arg(ui->comboBoxCunname->currentText())
              .arg(xiangName).arg(ui->comboBoxXiangname->currentText());
-   // QMessageBox::information(NULL, "Title", fullSql, QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
-
-     model->setQuery(fullSql) ;//where id=101
-//    model->setHeaderData(0, Qt::Horizontal, QObject::tr("乡名称"));
-//    model->setHeaderData(1, Qt::Horizontal, QObject::tr("村名称"));
-//    model->setHeaderData(2, Qt::Horizontal, QObject::tr("常住人口比重"));
-//    model->setHeaderData(3, Qt::Horizontal, QObject::tr("废弃率"));
-//    model->setHeaderData(4, Qt::Horizontal, QObject::tr("空置率"));
-//    model->setHeaderData(4, Qt::Horizontal, QObject::tr("空废宗地聚集度"));
 
 
-    WenTi_CeLueForm * wid = new WenTi_CeLueForm(model);
+
+
+     // QMessageBox::information(NULL, "Title", fullSql, QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+
+     model->setQuery(fullSql) ;
+     fullSql = QString( " `%2`='%3' and `%4`='%5'" )
+             .arg(cunName).arg(ui->comboBoxCunname->currentText())
+             .arg(xiangName).arg(ui->comboBoxXiangname->currentText());
+
+     modelPro_Strategy->setTable(tableName2);
+     modelPro_Strategy->setFilter(fullSql);
+     modelPro_Strategy->select();
+
+    WenTi_CeLueForm * wid = new WenTi_CeLueForm(model,modelPro_Strategy);
 
 
      wid->show();
+
+     QTableView *view = new QTableView;
+     view->setModel(modelPro_Strategy);
+     view->show();
 }
 void YouXuanDockWidget::show_InitStrategy()
 {

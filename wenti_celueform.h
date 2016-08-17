@@ -7,17 +7,23 @@ namespace Ui {
 class WenTi_CeLueForm;
 }
 class QSqlQueryModel;
+class QDataWidgetMapper;
+class QSqlTableModel;
+class QCloseEvent;
 class WenTi_CeLueForm : public QWidget
 {
     Q_OBJECT
 
 public:
-    WenTi_CeLueForm(QSqlQueryModel *model,QWidget *parent = 0);
+    WenTi_CeLueForm(QSqlQueryModel *model,QSqlTableModel *modelPro_Strategy,QWidget *parent = 0);
     ~WenTi_CeLueForm();
 
 private:
     Ui::WenTi_CeLueForm *ui;
+    QDataWidgetMapper *mapper;
 
+protected:
+    void closeEvent(QCloseEvent *event);
 
 };
 

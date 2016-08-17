@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>524</width>
-    <height>414</height>
+    <width>676</width>
+    <height>409</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,9 +29,9 @@
   <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
     <rect>
-     <x>270</x>
+     <x>390</x>
      <y>60</y>
-     <width>231</width>
+     <width>261</width>
      <height>321</height>
     </rect>
    </property>
@@ -39,7 +39,7 @@
     <enum>QTabWidget::West</enum>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab_1">
     <attribute name="title">
@@ -50,7 +50,7 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>201</width>
+       <width>231</width>
        <height>321</height>
       </rect>
      </property>
@@ -59,7 +59,6 @@
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;通过整治需求判断、访问问卷调查、以及相关到数据图件收集等一系列前期准备工作，经过分析，本村的核心问题主要有：&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
@@ -73,7 +72,7 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>201</width>
+       <width>231</width>
        <height>321</height>
       </rect>
      </property>
@@ -82,7 +81,6 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;通过对本村的空心化程度及空心村类型进行诊断，并结合村庄所处外部环境及村庄自身发展条件，选取符合村庄实际情况到整治模式如下：&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
@@ -91,7 +89,7 @@ p, li { white-space: pre-wrap; }
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>280</x>
+     <x>390</x>
      <y>30</y>
      <width>211</width>
      <height>16</height>
@@ -106,7 +104,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>20</x>
      <y>60</y>
-     <width>221</width>
+     <width>341</width>
      <height>321</height>
     </rect>
    </property>
