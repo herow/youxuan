@@ -8,6 +8,7 @@ WenTi_CeLueForm::WenTi_CeLueForm(QSqlQueryModel *model,QSqlTableModel *modelPro_
     QWidget(parent),
     ui(new Ui::WenTi_CeLueForm)
 {
+    setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
     Horizontal_proxy_model* proxy_model = new Horizontal_proxy_model();
     proxy_model->setSourceModel((QAbstractItemModel *)model);
@@ -19,10 +20,9 @@ WenTi_CeLueForm::WenTi_CeLueForm(QSqlQueryModel *model,QSqlTableModel *modelPro_
 
     mapper->addMapping(ui->textEditProblem, 2);
     mapper->addMapping(ui->textEditStrategy, 3);
-
-
     mapper->toFirst();
-
+    connect( ui->btn_close, SIGNAL(clicked()), this, SLOT( close() ) );
+    connect( ui->btn_save, SIGNAL(clicked()), this, SLOT( save()) );
 }
 
 WenTi_CeLueForm::~WenTi_CeLueForm()
@@ -32,6 +32,10 @@ WenTi_CeLueForm::~WenTi_CeLueForm()
 }
 void WenTi_CeLueForm::closeEvent(QCloseEvent *event)
 {
-    mapper->submit();
+
     event->accept();
+}
+void WenTi_CeLueForm::save()
+{
+    mapper->submit();
 }

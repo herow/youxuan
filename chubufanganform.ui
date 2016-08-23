@@ -36,7 +36,7 @@
     <string>初步整治方案如下：</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="btn_generate">
    <property name="geometry">
     <rect>
      <x>230</x>
@@ -46,10 +46,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>保存</string>
+    <string>生成</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="btn_save">
    <property name="geometry">
     <rect>
      <x>310</x>
@@ -59,7 +59,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>退出</string>
+    <string>保存</string>
    </property>
   </widget>
  </widget>

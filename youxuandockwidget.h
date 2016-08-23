@@ -3,7 +3,11 @@
 
 #include <QDockWidget>
 class QDataWidgetMapper;
-
+class QSqlTableModel;
+class ChuBuFangAnForm;
+class QSqlQueryModel;
+class WenTi_CeLueForm;
+class fangtang;
 namespace Ui {
 class YouXuanDockWidget;
 }
@@ -18,6 +22,12 @@ public:
 
 private:
     Ui::YouXuanDockWidget *ui;
+    QSqlTableModel *modelPro_Strategy;
+    ChuBuFangAnForm * chubufangan;
+    QSqlQueryModel *model_strategy;
+    QSqlQueryModel *model_PublicOpinion;
+    fangtang *wid_PublicOpinion;
+    WenTi_CeLueForm * wid_wenti_celue;
 private slots:
     void show_kongxin_status();
     void show_surveyForm();

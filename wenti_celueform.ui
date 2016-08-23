@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>676</width>
-    <height>409</height>
+    <width>671</width>
+    <height>445</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -109,10 +109,35 @@ p, li { white-space: pre-wrap; }
     </rect>
    </property>
   </widget>
+  <widget class="QSplitter" name="splitter">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>400</y>
+     <width>170</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <widget class="QPushButton" name="btn_save">
+    <property name="text">
+     <string>保存</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_close">
+    <property name="text">
+     <string>关闭</string>
+    </property>
+   </widget>
+  </widget>
   <zorder>label</zorder>
   <zorder>label_2</zorder>
   <zorder>tableView</zorder>
   <zorder>tabWidget</zorder>
+  <zorder>btn_save</zorder>
+  <zorder>btn_close</zorder>
  </widget>
  <resources/>
  <connections/>

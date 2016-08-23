@@ -21,7 +21,8 @@ public:
 private:
     Ui::WenTi_CeLueForm *ui;
     QDataWidgetMapper *mapper;
-
+private slots:
+    void save();
 protected:
     void closeEvent(QCloseEvent *event);
 
