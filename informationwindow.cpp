@@ -46,7 +46,7 @@ InformationWindow::InformationWindow(int id, QSqlRelationalTableModel *offices,
     : QDialog(parent)
 {
 //! [0] //! [1]
-    QLabel *locationLabel = new QLabel(tr("Location: "));
+    QLabel *locationLabel = new QLabel(tr("位置: "));
     QLabel *countryLabel = new QLabel(tr("Country: "));
     QLabel *descriptionLabel = new QLabel(tr("Description: "));
  //   QLabel *imageFileLabel = new QLabel(tr("Image file: "));

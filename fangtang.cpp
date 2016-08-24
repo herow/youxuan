@@ -25,7 +25,7 @@ fangtang::fangtang(QSqlQueryModel *model,QWidget *parent) :
 fangtang::~fangtang()
 {
     delete ui;
-    delete m_model;
+   // delete m_model;
 }
 void fangtang::showDetail(QModelIndex index) {
     QModelIndex detailIndex=m_model->index(index.row() ,index.column()+1);

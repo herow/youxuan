@@ -26,13 +26,19 @@ private:
     QSqlTableModel *modelPro_Strategy;
     QSqlTableModel *model_InitialStrategy;
     QSqlTableModel *model_FinalStrategy;
-    ChuBuFangAnForm *chubufangan;
+
+    QSqlQueryModel *model_SurveyForm;
+    QSqlQueryModel *model_SemiSurvey;
+    QSqlQueryModel *model_SpecStatus;
     QSqlQueryModel *model_strategy;
     QSqlQueryModel *model_PublicOpinion;
     QSqlQueryModel *model_GovOpinion;
+    fangtang *wid_SemiSurvey;
+    fangtang *wid_SpecStatus;
     fangtang *wid_PublicOpinion;
     fangtang *wid_GovOpinion;
     WenTi_CeLueForm *wid_wenti_celue;
+    ChuBuFangAnForm *chubufangan;
     FinalFanganForm *wid_finalStrategy;
 private slots:
     void show_kongxin_status();

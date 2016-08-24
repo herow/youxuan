@@ -67,6 +67,9 @@ YouXuanDockWidget::YouXuanDockWidget(QWidget *parent) :
     model_InitialStrategy =new QSqlTableModel;
     model_FinalStrategy =new QSqlTableModel;
    // chubufangan= new ChuBuFangAnForm(modelPro_Strategy);
+    model_SurveyForm = new QSqlQueryModel;
+    model_SemiSurvey = new QSqlQueryModel;
+    model_SpecStatus = new QSqlQueryModel;
     model_strategy= new QSqlQueryModel;
     model_PublicOpinion=new QSqlQueryModel;
     model_GovOpinion=new QSqlQueryModel;
@@ -76,13 +79,19 @@ YouXuanDockWidget::YouXuanDockWidget(QWidget *parent) :
 YouXuanDockWidget::~YouXuanDockWidget()
 {
     delete ui;
+    delete model_SurveyForm;
+    delete model_SemiSurvey;
+    delete model_SpecStatus;
     delete modelPro_Strategy;
     delete model_strategy;
     delete model_PublicOpinion;
     delete model_GovOpinion;
     delete model_FinalStrategy;
     delete chubufangan;
+    delete wid_SemiSurvey;
+    delete wid_SpecStatus;
     delete wid_wenti_celue;
+    delete chubufangan;
     delete wid_PublicOpinion;
     delete wid_GovOpinion;
     delete wid_finalStrategy;
@@ -90,8 +99,7 @@ YouXuanDockWidget::~YouXuanDockWidget()
 
 void YouXuanDockWidget::show_kongxin_status()
 {
-//     KongXinStatus * wid = new KongXinStatus(this);
-//     wid->show();
+
     QSqlQueryModel *model= new QSqlTableModel;
     // Set character encoding to UTF8
 
@@ -127,7 +135,7 @@ void YouXuanDockWidget::show_kongxin_status()
 }
 void YouXuanDockWidget::show_surveyForm()
 {
-    QSqlQueryModel *model= new QSqlTableModel;
+
     // Set character encoding to UTF8
 
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
@@ -145,13 +153,13 @@ void YouXuanDockWidget::show_surveyForm()
              .arg(xiangName).arg(ui->comboBoxXiangname->currentText());
    // QMessageBox::information(NULL, "Title", fullSql, QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
 
-    model->setQuery(fullSql) ;//where id=101
+    model_SurveyForm->setQuery(fullSql) ;//where id=101
 
 
 
     QTableView *view = new QTableView;
-    view->setModel(model);
-    //view->horizontalHeader()->hide();
+    view->setModel(model_SurveyForm);
+    view->setGeometry(QRect(0,0,900,500));
     view->show();
 }
 void YouXuanDockWidget::show_picturecollect()
@@ -169,7 +177,7 @@ void YouXuanDockWidget::show_picturecollect()
 void YouXuanDockWidget::show_semisurvey()
 {
 
-    QSqlQueryModel *model= new QSqlTableModel;
+    //QSqlQueryModel *model= new QSqlTableModel;
     // Set character encoding to UTF8
 
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
@@ -192,19 +200,19 @@ void YouXuanDockWidget::show_semisurvey()
 //             .arg(xiangName).arg(ui->comboBoxXiangname->currentText());
    // QMessageBox::information(NULL, "Title", fullSql, QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
 
-    model->setQuery(fullSql) ;//where id=101
+    model_SemiSurvey->setQuery(fullSql) ;//where id=101
 
 
-    fangtang * wid = new fangtang(model);
-    wid->setWindowTitle(tableName);
-    wid->show();
+    wid_SemiSurvey = new fangtang(model_SemiSurvey);
+    wid_SemiSurvey->setWindowTitle(tableName);
+    wid_SemiSurvey->show();
 
 
 }
 void YouXuanDockWidget::show_specstatus()
 {
 
-        QSqlQueryModel *model= new QSqlTableModel;
+        //QSqlQueryModel *model= new QSqlTableModel;
         // Set character encoding to UTF8
 
         QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
@@ -228,12 +236,10 @@ void YouXuanDockWidget::show_specstatus()
     //             .arg(xiangName).arg(ui->comboBoxXiangname->currentText());
        // QMessageBox::information(NULL, "Title", fullSql, QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
 
-        model->setQuery(fullSql) ;//where id=101
-
-
-        fangtang * wid = new fangtang(model);
-        wid->setWindowTitle(tableName);
-        wid->show();
+        model_SpecStatus->setQuery(fullSql) ;//where id=101
+        wid_SpecStatus = new fangtang(model_SpecStatus);
+        wid_SpecStatus->setWindowTitle(tableName);
+        wid_SpecStatus->show();
 }
 void YouXuanDockWidget::show_ProblemStrategy()
 {
