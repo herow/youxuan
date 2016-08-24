@@ -6,6 +6,7 @@ fangtang::fangtang(QSqlQueryModel *model,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::fangtang)
 {
+    setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
     m_model=model;
     ui->tableViewCaption->setModel(m_model);

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>411</width>
-    <height>349</height>
+    <width>401</width>
+    <height>485</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,17 +16,17 @@
   <widget class="QTextEdit" name="textEdit">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>20</x>
      <y>50</y>
-     <width>351</width>
-     <height>231</height>
+     <width>361</width>
+     <height>381</height>
     </rect>
    </property>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>20</x>
      <y>20</y>
      <width>131</width>
      <height>16</height>
@@ -40,20 +40,20 @@
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>300</y>
+     <y>440</y>
      <width>71</width>
      <height>27</height>
     </rect>
    </property>
    <property name="text">
-    <string>生成</string>
+    <string>初始化</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btn_save">
    <property name="geometry">
     <rect>
      <x>310</x>
-     <y>300</y>
+     <y>440</y>
      <width>71</width>
      <height>27</height>
     </rect>

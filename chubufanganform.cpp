@@ -27,7 +27,7 @@ ChuBuFangAnForm::~ChuBuFangAnForm()
 {
     delete ui;
     delete mapper;
-//    delete model;
+
 }
 void ChuBuFangAnForm::generate()
 {

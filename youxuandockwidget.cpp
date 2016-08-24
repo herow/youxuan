@@ -64,9 +64,12 @@ YouXuanDockWidget::YouXuanDockWidget(QWidget *parent) :
 
 
     modelPro_Strategy= new QSqlTableModel;
+    model_InitialStrategy =new QSqlTableModel;
+    model_FinalStrategy =new QSqlTableModel;
    // chubufangan= new ChuBuFangAnForm(modelPro_Strategy);
     model_strategy= new QSqlQueryModel;
     model_PublicOpinion=new QSqlQueryModel;
+    model_GovOpinion=new QSqlQueryModel;
    // wid_wenti_celue = new WenTi_CeLueForm(model_strategy,modelPro_Strategy);
 }
 
@@ -76,9 +79,13 @@ YouXuanDockWidget::~YouXuanDockWidget()
     delete modelPro_Strategy;
     delete model_strategy;
     delete model_PublicOpinion;
+    delete model_GovOpinion;
+    delete model_FinalStrategy;
     delete chubufangan;
     delete wid_wenti_celue;
     delete wid_PublicOpinion;
+    delete wid_GovOpinion;
+    delete wid_finalStrategy;
 }
 
 void YouXuanDockWidget::show_kongxin_status()
@@ -290,11 +297,11 @@ void YouXuanDockWidget::show_InitStrategy()
              .arg(cunName).arg(ui->comboBoxCunname->currentText())
              .arg(xiangName).arg(ui->comboBoxXiangname->currentText());
 
-     modelPro_Strategy->setTable(tableName2);
-     modelPro_Strategy->setFilter(fullSql);
-     modelPro_Strategy->select();
+     model_InitialStrategy->setTable(tableName2);
+     model_InitialStrategy->setFilter(fullSql);
+     model_InitialStrategy->select();
 
-     chubufangan= new ChuBuFangAnForm(modelPro_Strategy);
+     chubufangan= new ChuBuFangAnForm(model_InitialStrategy);
 
 
      chubufangan->show();
@@ -339,13 +346,61 @@ void YouXuanDockWidget::show_PublicOpinion()
 }
 void YouXuanDockWidget::show_GovOpinion()
 {
-    ZhengFuYaoqiuForm * wid = new ZhengFuYaoqiuForm();
-    wid->show();
+//    ZhengFuYaoqiuForm * wid = new ZhengFuYaoqiuForm();
+//    wid->show();
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+    QTextCodec *codec =QTextCodec::codecForName("UTF-8");
+    const char * str = "政府意见";
+    const char * strcaption = "标题";
+    const char * strCunname = "村名称";
+    const char * strXiangname = "乡名称";
+
+    QString tableName=codec->toUnicode(str);
+    QString  caption =codec->toUnicode(strcaption);
+    QString cunName=codec->toUnicode(strCunname);
+    QString xiangName=codec->toUnicode(strXiangname);
+
+    QString fullSql;
+    fullSql = QString( "select * from '%1' where `%2`='%3' and `%4`='%5'" )
+             .arg( tableName ).arg(cunName).arg(ui->comboBoxCunname->currentText())
+             .arg(xiangName).arg(ui->comboBoxXiangname->currentText());
+
+    model_GovOpinion->setQuery(fullSql) ;//where id=101
+
+
+    wid_GovOpinion = new fangtang(model_GovOpinion);
+    wid_GovOpinion->setWindowTitle(tableName);
+    wid_GovOpinion->show();
 }
 void YouXuanDockWidget::show_FinalSolution()
 {
-    FinalFanganForm * wid = new FinalFanganForm();
-    wid->show();
+//    FinalFanganForm * wid = new FinalFanganForm();
+//    wid->show();
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+     QTextCodec *codec =QTextCodec::codecForName("UTF-8");
+   // const char * strtable1 = "空心化程度";
+    const char * strtable2 = "核心问题与整治策略";
+    const char * strCunname = "村名称";
+    const char * strXiangname = "乡名称";
+  //  QString tableName1=codec->toUnicode(strtable1);
+    QString tableName2=codec->toUnicode(strtable2);
+    QString cunName=codec->toUnicode(strCunname);
+    QString xiangName=codec->toUnicode(strXiangname);
+
+     QString fullSql;
+
+     fullSql = QString( " `%2`='%3' and `%4`='%5'" )
+             .arg(cunName).arg(ui->comboBoxCunname->currentText())
+             .arg(xiangName).arg(ui->comboBoxXiangname->currentText());
+
+     model_FinalStrategy->setTable(tableName2);
+     model_FinalStrategy->setFilter(fullSql);
+     model_FinalStrategy->select();
+
+     wid_finalStrategy= new FinalFanganForm(model_FinalStrategy);
+
+
+     wid_finalStrategy->show();
 }
 bool YouXuanDockWidget::createConnetion()
 {

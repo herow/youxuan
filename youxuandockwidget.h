@@ -8,6 +8,7 @@ class ChuBuFangAnForm;
 class QSqlQueryModel;
 class WenTi_CeLueForm;
 class fangtang;
+class FinalFanganForm;
 namespace Ui {
 class YouXuanDockWidget;
 }
@@ -23,11 +24,16 @@ public:
 private:
     Ui::YouXuanDockWidget *ui;
     QSqlTableModel *modelPro_Strategy;
-    ChuBuFangAnForm * chubufangan;
+    QSqlTableModel *model_InitialStrategy;
+    QSqlTableModel *model_FinalStrategy;
+    ChuBuFangAnForm *chubufangan;
     QSqlQueryModel *model_strategy;
     QSqlQueryModel *model_PublicOpinion;
+    QSqlQueryModel *model_GovOpinion;
     fangtang *wid_PublicOpinion;
-    WenTi_CeLueForm * wid_wenti_celue;
+    fangtang *wid_GovOpinion;
+    WenTi_CeLueForm *wid_wenti_celue;
+    FinalFanganForm *wid_finalStrategy;
 private slots:
     void show_kongxin_status();
     void show_surveyForm();
