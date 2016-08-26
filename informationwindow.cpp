@@ -41,20 +41,28 @@
 #include "informationwindow.h"
 
 //! [0]
-InformationWindow::InformationWindow(int id, QSqlRelationalTableModel *offices,
+InformationWindow::InformationWindow(int id, QSqlTableModel *offices,
                                      QWidget *parent)
     : QDialog(parent)
 {
 //! [0] //! [1]
-    QLabel *locationLabel = new QLabel(tr("位置: "));
-    QLabel *countryLabel = new QLabel(tr("Country: "));
-    QLabel *descriptionLabel = new QLabel(tr("Description: "));
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+     QTextCodec *codec =QTextCodec::codecForName("UTF-8");
+    const char * caption = "标题";
+    const char * content = "内容";
+
+    QString lblCaption=codec->toUnicode(caption);
+    QString lblContent=codec->toUnicode(content);
+
+    QLabel *locationLabel = new QLabel(lblCaption);
+    //QLabel *countryLabel = new QLabel(tr("Country: "));
+    QLabel *descriptionLabel = new QLabel(lblContent);
  //   QLabel *imageFileLabel = new QLabel(tr("Image file: "));
 
 //    createButtons();
 
     locationText = new QLabel;
-    countryText = new QLabel;
+  //  countryText = new QLabel;
     descriptionEditor = new QTextEdit;
 //! [1]
 
@@ -71,7 +79,7 @@ InformationWindow::InformationWindow(int id, QSqlRelationalTableModel *offices,
     mapper->setItemDelegate(new QSqlRelationalDelegate(mapper));
  //   mapper->addMapping(imageFileEditor, 1);
     mapper->addMapping(locationText, 2, "text");
-    mapper->addMapping(countryText, 3, "text");
+ //   mapper->addMapping(countryText, 3, "text");
     mapper->addMapping(descriptionEditor, 4);
     mapper->setCurrentIndex(id);
 //! [3]
@@ -84,7 +92,7 @@ InformationWindow::InformationWindow(int id, QSqlRelationalTableModel *offices,
 
     QFormLayout *formLayout = new QFormLayout;
     formLayout->addRow(locationLabel, locationText);
-    formLayout->addRow(countryLabel, countryText);
+   // formLayout->addRow(countryLabel, countryText);
     //formLayout->addRow(imageFileLabel, imageFileEditor);
     formLayout->addRow(descriptionLabel, descriptionEditor);
 
@@ -102,7 +110,7 @@ InformationWindow::InformationWindow(int id, QSqlRelationalTableModel *offices,
 
     //setWindowFlags(Qt::Window);
 //    enableButtons(false);
-    setWindowTitle(tr("Office: %1").arg(locationText->text()));
+    setWindowTitle(tr("%1").arg(lblContent));
 }
 //! [4]
 

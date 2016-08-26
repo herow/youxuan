@@ -73,7 +73,7 @@ private:
     QGraphicsScene *scene;
     QList<InformationWindow *> informationWindows;
 //! [2] //! [3]
-    QSqlRelationalTableModel *officeTable;
+    QSqlTableModel *picturetable;
 };
 //! [3]
 

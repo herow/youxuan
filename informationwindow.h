@@ -50,7 +50,7 @@ class InformationWindow : public QDialog
     Q_OBJECT
 
 public:
-    InformationWindow(int id, QSqlRelationalTableModel *offices,
+    InformationWindow(int id, QSqlTableModel *offices,
                       QWidget *parent = 0);
 
     int id();
@@ -75,7 +75,7 @@ private:
 
     QComboBox *imageFileEditor;
     QLabel *locationText;
-    QLabel *countryText;
+ //   QLabel *countryText;
     QTextEdit *descriptionEditor;
 
     QPushButton *closeButton;

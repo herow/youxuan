@@ -46,10 +46,10 @@
 View::View(const QString &offices, const QString &images, QWidget *parent)
     : QGraphicsView(parent)
 {
-    officeTable = new QSqlRelationalTableModel(this);
-    officeTable->setTable(offices);
-    officeTable->setRelation(1, QSqlRelation(images, "locationid", "file"));
-    officeTable->select();
+    picturetable = new QSqlTableModel(this);
+    picturetable->setTable(offices);
+
+    picturetable->select();
 //! [0]
 
 //! [1]
@@ -76,7 +76,7 @@ View::View(const QString &offices, const QString &images, QWidget *parent)
 //! [3]
 void View::addItems()
 {
-    int officeCount = officeTable->rowCount();
+    int officeCount = picturetable->rowCount();
 
     int imageOffset = 150;
     int leftMargin = 70;
@@ -85,11 +85,11 @@ void View::addItems()
     for (int i = 0; i < officeCount; i++) {
         ImageItem *image;
         QGraphicsTextItem *label;
-        QSqlRecord record = officeTable->record(i);
+        QSqlRecord record = picturetable->record(i);
 
         int id = record.value("id").toInt();
-        QString file = record.value("file").toString();
-        QString location = record.value("location").toString();
+        QString file = record.value(5).toString();
+        QString location = record.value(3).toString();
 
         int columnOffset = ((i / 3) * 37);
         int x = ((i / 3) * imageOffset) + leftMargin + columnOffset;
@@ -122,7 +122,7 @@ void View::mouseReleaseEvent(QMouseEvent *event)
 void View::showInformation(ImageItem *image)
 {
     int id = image->id();
-    if (id < 0 || id >= officeTable->rowCount())
+    if (id < 0 || id >= picturetable->rowCount())
         return;
 
     InformationWindow *window = findWindow(id);
@@ -137,7 +137,7 @@ void View::showInformation(ImageItem *image)
 #endif
     } else {
         InformationWindow *window;
-        window = new InformationWindow(id, officeTable, this);
+        window = new InformationWindow(id, picturetable, this);
 
         connect(window, SIGNAL(imageChanged(int,QString)),
                 this, SLOT(updateImage(int,QString)));
