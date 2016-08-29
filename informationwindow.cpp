@@ -78,7 +78,7 @@ InformationWindow::InformationWindow(int id, QSqlTableModel *offices,
     mapper->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);
     mapper->setItemDelegate(new QSqlRelationalDelegate(mapper));
  //   mapper->addMapping(imageFileEditor, 1);
-    mapper->addMapping(locationText, 2, "text");
+    mapper->addMapping(locationText, 3, "text");
  //   mapper->addMapping(countryText, 3, "text");
     mapper->addMapping(descriptionEditor, 4);
     mapper->setCurrentIndex(id);

@@ -9,6 +9,7 @@ class QSqlQueryModel;
 class WenTi_CeLueForm;
 class fangtang;
 class FinalFanganForm;
+class View;
 namespace Ui {
 class YouXuanDockWidget;
 }
@@ -40,6 +41,7 @@ private:
     WenTi_CeLueForm *wid_wenti_celue;
     ChuBuFangAnForm *chubufangan;
     FinalFanganForm *wid_finalStrategy;
+    View * wid_picview;
 private slots:
     void show_kongxin_status();
     void show_surveyForm();

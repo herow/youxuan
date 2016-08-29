@@ -53,8 +53,8 @@ class View : public QGraphicsView
     Q_OBJECT
 
 public:
-    View(const QString &offices, const QString &images, QWidget *parent = 0);
-
+    View(const QString &offices, const QString &xiang, const QString &cun,QWidget *parent = 0);
+    ~View();
 protected:
     void mouseReleaseEvent(QMouseEvent *event);
 //! [0]

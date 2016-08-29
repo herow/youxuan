@@ -95,6 +95,7 @@ YouXuanDockWidget::~YouXuanDockWidget()
     delete wid_PublicOpinion;
     delete wid_GovOpinion;
     delete wid_finalStrategy;
+    delete wid_picview;
 }
 
 void YouXuanDockWidget::show_kongxin_status()
@@ -166,13 +167,16 @@ void YouXuanDockWidget::show_picturecollect()
 {
 //     ImageCollection * wid = new ImageCollection();
 //     wid->show();
-     View *view=new View("offices", "images");
+
      QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
      QTextCodec *codec =QTextCodec::codecForName("UTF-8");
-     const char * str = "数据图件收集";
+     const char * str = "数据图件";
      QString winName=codec->toUnicode(str);
-     view->setWindowTitle(winName);
-     view->show();
+
+     wid_picview=new View(winName,ui->comboBoxXiangname->currentText(),
+                         ui->comboBoxCunname->currentText());
+     wid_picview->setWindowTitle(winName);
+     wid_picview->show();
 }
 void YouXuanDockWidget::show_semisurvey()
 {

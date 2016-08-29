@@ -43,12 +43,27 @@
 #include "view.h"
 
 //! [0]
-View::View(const QString &offices, const QString &images, QWidget *parent)
+View::View(const QString &pictable,const QString &xiang, const QString &cun, QWidget *parent)
     : QGraphicsView(parent)
 {
-    picturetable = new QSqlTableModel(this);
-    picturetable->setTable(offices);
+    setAttribute(Qt::WA_DeleteOnClose);
 
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+    QTextCodec *codec =QTextCodec::codecForName("UTF-8");
+
+    picturetable = new QSqlTableModel(this);
+
+    const char * strCunname = "村名称";
+    const char * strXiangname = "乡名称";
+    QString cunName=codec->toUnicode(strCunname);
+    QString xiangName=codec->toUnicode(strXiangname);
+
+    QString fullSql = QString( " `%1`='%2' and `%3`='%4'" )
+            .arg(cunName).arg(cun)
+            .arg(xiangName).arg(xiang);
+
+    picturetable->setTable(pictable);
+    picturetable->setFilter(fullSql);
     picturetable->select();
 //! [0]
 
@@ -72,7 +87,13 @@ View::View(const QString &offices, const QString &images, QWidget *parent)
 //   setWindowTitle(tr("Offices World Wide"));
 }
 //! [1]
-
+View::~View()
+{
+     delete scene;
+     delete picturetable;
+     qDeleteAll(informationWindows);
+     informationWindows.clear();
+}
 //! [3]
 void View::addItems()
 {
