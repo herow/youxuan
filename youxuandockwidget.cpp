@@ -42,23 +42,25 @@ YouXuanDockWidget::YouXuanDockWidget(QWidget *parent) :
     connect( ui->btnPublicOpinion, SIGNAL(clicked()), this, SLOT( show_PublicOpinion() ) );
     connect( ui->btnGovOpinion, SIGNAL(clicked()), this, SLOT( show_GovOpinion() ) );
     connect( ui->btnFinalSolution, SIGNAL(clicked()), this, SLOT( show_FinalSolution() ) );
+    connect( ui->comboBoxXiangname, SIGNAL(currentIndexChanged()),this,SLOT(setSelection()));
+    connect( ui->comboBoxCunname, SIGNAL(currentIndexChanged()),this,SLOT(setSelection()));
 
     if (!createConnection())
         return  ;
-    QSqlTableModel *model= new QSqlTableModel;
-    model->setTable("test");
-    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    model->select();
+    model_youxuan= new QSqlTableModel;
+    model_youxuan->setTable("test");
+    model_youxuan->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    model_youxuan->select();
 
     mapper = new QDataWidgetMapper(this);
-    mapper->setModel(model);
+    mapper->setModel(model_youxuan);
     mapper->setItemDelegate(new ComboBoxDelegate(this));
-    mapper->addMapping(ui->comboxKongxc, model->fieldIndex("field3"));
-    mapper->addMapping(ui->comboxZhengzhi, model->fieldIndex("field4"));
-    mapper->addMapping(ui->lineEditZonghushu, model->fieldIndex("field5"));
-    mapper->addMapping(ui->lineEditTongyi, model->fieldIndex("field6"));
-    mapper->addMapping(ui->lineEditFandui, model->fieldIndex("field7"));
-    mapper->addMapping(ui->comboxGaizaoyiyuan, model->fieldIndex("field8"));
+    mapper->addMapping(ui->comboxKongxc, model_youxuan->fieldIndex("field3"));
+    mapper->addMapping(ui->comboxZhengzhi, model_youxuan->fieldIndex("field4"));
+    mapper->addMapping(ui->lineEditZonghushu, model_youxuan->fieldIndex("field5"));
+    mapper->addMapping(ui->lineEditTongyi, model_youxuan->fieldIndex("field6"));
+    mapper->addMapping(ui->lineEditFandui, model_youxuan->fieldIndex("field7"));
+    mapper->addMapping(ui->comboxGaizaoyiyuan, model_youxuan->fieldIndex("field8"));
 
     mapper->toFirst();
 
@@ -75,10 +77,38 @@ YouXuanDockWidget::YouXuanDockWidget(QWidget *parent) :
     model_GovOpinion=new QSqlQueryModel;
    // wid_wenti_celue = new WenTi_CeLueForm(model_strategy,modelPro_Strategy);
 }
+void YouXuanDockWidget::setSelection()
+{
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+    QTextCodec *codec =QTextCodec::codecForName("UTF-8");
+    const char * strCunname = "村名称";
+    const char * strXiangname = "乡名称";
+    QString cunName=codec->toUnicode(strCunname);
+    QString xiangName=codec->toUnicode(strXiangname);
 
+    QString fullSql = QString( " `%1`='%2' and `%3`='%4'" )
+            .arg(cunName).arg(ui->comboBoxCunname->currentText())
+            .arg(xiangName).arg(ui->comboBoxXiangname->currentText());
+
+
+    model_youxuan->setFilter(fullSql);
+    model_youxuan->select();
+
+    mapper->setModel(model_youxuan);
+    mapper->setItemDelegate(new ComboBoxDelegate(this));
+    mapper->addMapping(ui->comboxKongxc, model_youxuan->fieldIndex("field3"));
+    mapper->addMapping(ui->comboxZhengzhi, model_youxuan->fieldIndex("field4"));
+    mapper->addMapping(ui->lineEditZonghushu, model_youxuan->fieldIndex("field5"));
+    mapper->addMapping(ui->lineEditTongyi, model_youxuan->fieldIndex("field6"));
+    mapper->addMapping(ui->lineEditFandui, model_youxuan->fieldIndex("field7"));
+    mapper->addMapping(ui->comboxGaizaoyiyuan, model_youxuan->fieldIndex("field8"));
+
+    mapper->toFirst();
+}
 YouXuanDockWidget::~YouXuanDockWidget()
 {
     delete ui;
+    delete model_youxuan;
     delete model_SurveyForm;
     delete model_SemiSurvey;
     delete model_SpecStatus;

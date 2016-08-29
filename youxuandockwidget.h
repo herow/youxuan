@@ -34,6 +34,8 @@ private:
     QSqlQueryModel *model_strategy;
     QSqlQueryModel *model_PublicOpinion;
     QSqlQueryModel *model_GovOpinion;
+    QSqlTableModel *model_youxuan;
+
     fangtang *wid_SemiSurvey;
     fangtang *wid_SpecStatus;
     fangtang *wid_PublicOpinion;
@@ -53,6 +55,7 @@ private slots:
     void show_PublicOpinion();
     void show_GovOpinion();
     void show_FinalSolution();
+    void setSelection();
 private:
     bool createConnetion();
     QDataWidgetMapper *mapper;

@@ -112,9 +112,9 @@ void View::addItems()
         QString file = record.value(5).toString();
         QString location = record.value(3).toString();
 
-        int columnOffset = ((i / 3) * 37);
-        int x = ((i / 3) * imageOffset) + leftMargin + columnOffset;
-        int y = ((i % 3) * imageOffset) + topMargin;
+        int columnOffset = ((i % 2) * 37);
+        int y = ((i / 2) * imageOffset) + topMargin ;
+        int x = ((i % 2) * imageOffset) + leftMargin + columnOffset;
 
         image = new ImageItem(id, QPixmap("./" + file));
         image->setData(0, i);
