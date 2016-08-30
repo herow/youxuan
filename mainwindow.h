@@ -6,7 +6,7 @@
 namespace Ui {
 class MainWindow;
 }
-
+class YouXuanDockWidget;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -17,6 +17,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    YouXuanDockWidget * wizard;
 private slots:
     void showWizard();
 };

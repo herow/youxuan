@@ -59,6 +59,8 @@ private slots:
 private:
     bool createConnetion();
     QDataWidgetMapper *mapper;
+protected:
+    void closeEvent(QCloseEvent *event);
 };
 
 #endif // YOUXUANDOCKWIDGET_H

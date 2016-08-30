@@ -45,8 +45,8 @@ YouXuanDockWidget::YouXuanDockWidget(QWidget *parent) :
     connect( ui->comboBoxXiangname, SIGNAL(currentIndexChanged(int)),this,SLOT(setSelection(int)));
     connect( ui->comboBoxCunname, SIGNAL(currentIndexChanged(int)),this,SLOT(setSelection(int)));
 
-    if (!createConnection())
-        return  ;
+//    if (!createConnection())
+//        return  ;
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
      QTextCodec *codec =QTextCodec::codecForName("UTF-8");
 
@@ -55,7 +55,7 @@ YouXuanDockWidget::YouXuanDockWidget(QWidget *parent) :
     QString tableName2=codec->toUnicode(strtable2);
     model_youxuan= new QSqlTableModel;
     model_youxuan->setTable(tableName2);
-    model_youxuan->setEditStrategy(QSqlTableModel::OnManualSubmit);
+ //   model_youxuan->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
 
     mapper = new QDataWidgetMapper(this);
@@ -305,17 +305,17 @@ void YouXuanDockWidget::show_ProblemStrategy()
      // QMessageBox::information(NULL, "Title", fullSql, QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
 
      model_strategy->setQuery(fullSql) ;
-     fullSql = QString( " `%2`='%3' and `%4`='%5'" )
-             .arg(cunName).arg(ui->comboBoxCunname->currentText())
-             .arg(xiangName).arg(ui->comboBoxXiangname->currentText());
+//     fullSql = QString( " `%2`='%3' and `%4`='%5'" )
+//             .arg(cunName).arg(ui->comboBoxCunname->currentText())
+//             .arg(xiangName).arg(ui->comboBoxXiangname->currentText());
 
-     modelPro_Strategy->setTable(tableName2);
-     modelPro_Strategy->setFilter(fullSql);
-     modelPro_Strategy->select();
+//     modelPro_Strategy->setTable(tableName2);
+//     modelPro_Strategy->setFilter(fullSql);
+//     modelPro_Strategy->select();
 
 
 
-    wid_wenti_celue = new WenTi_CeLueForm(model_strategy,modelPro_Strategy);
+    wid_wenti_celue = new WenTi_CeLueForm(model_strategy,model_youxuan);
      wid_wenti_celue->show();
 
 
@@ -336,17 +336,17 @@ void YouXuanDockWidget::show_InitStrategy()
     QString cunName=codec->toUnicode(strCunname);
     QString xiangName=codec->toUnicode(strXiangname);
 
-     QString fullSql;
+//     QString fullSql;
 
-     fullSql = QString( " `%2`='%3' and `%4`='%5'" )
-             .arg(cunName).arg(ui->comboBoxCunname->currentText())
-             .arg(xiangName).arg(ui->comboBoxXiangname->currentText());
+//     fullSql = QString( " `%2`='%3' and `%4`='%5'" )
+//             .arg(cunName).arg(ui->comboBoxCunname->currentText())
+//             .arg(xiangName).arg(ui->comboBoxXiangname->currentText());
 
-     model_InitialStrategy->setTable(tableName2);
-     model_InitialStrategy->setFilter(fullSql);
-     model_InitialStrategy->select();
+//     model_InitialStrategy->setTable(tableName2);
+//     model_InitialStrategy->setFilter(fullSql);
+//     model_InitialStrategy->select();
 
-     chubufangan= new ChuBuFangAnForm(model_InitialStrategy);
+     chubufangan= new ChuBuFangAnForm(model_youxuan);
 
 
      chubufangan->show();
@@ -419,32 +419,29 @@ void YouXuanDockWidget::show_GovOpinion()
 }
 void YouXuanDockWidget::show_FinalSolution()
 {
-//    FinalFanganForm * wid = new FinalFanganForm();
-//    wid->show();
-    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
-     QTextCodec *codec =QTextCodec::codecForName("UTF-8");
-   // const char * strtable1 = "空心化程度";
-    const char * strtable2 = "核心问题与整治策略";
-    const char * strCunname = "村名称";
-    const char * strXiangname = "乡名称";
-  //  QString tableName1=codec->toUnicode(strtable1);
-    QString tableName2=codec->toUnicode(strtable2);
-    QString cunName=codec->toUnicode(strCunname);
-    QString xiangName=codec->toUnicode(strXiangname);
 
-     QString fullSql;
+//    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+//     QTextCodec *codec =QTextCodec::codecForName("UTF-8");
+//   // const char * strtable1 = "空心化程度";
+//    const char * strtable2 = "核心问题与整治策略";
+//    const char * strCunname = "村名称";
+//    const char * strXiangname = "乡名称";
+//  //  QString tableName1=codec->toUnicode(strtable1);
+//    QString tableName2=codec->toUnicode(strtable2);
+//    QString cunName=codec->toUnicode(strCunname);
+//    QString xiangName=codec->toUnicode(strXiangname);
 
-     fullSql = QString( " `%2`='%3' and `%4`='%5'" )
-             .arg(cunName).arg(ui->comboBoxCunname->currentText())
-             .arg(xiangName).arg(ui->comboBoxXiangname->currentText());
+//     QString fullSql;
 
-     model_FinalStrategy->setTable(tableName2);
-     model_FinalStrategy->setFilter(fullSql);
-     model_FinalStrategy->select();
+//     fullSql = QString( " `%2`='%3' and `%4`='%5'" )
+//             .arg(cunName).arg(ui->comboBoxCunname->currentText())
+//             .arg(xiangName).arg(ui->comboBoxXiangname->currentText());
 
-     wid_finalStrategy= new FinalFanganForm(model_FinalStrategy);
+//     model_FinalStrategy->setTable(tableName2);
+//     model_FinalStrategy->setFilter(fullSql);
+//     model_FinalStrategy->select();
 
-
+     wid_finalStrategy= new FinalFanganForm(model_youxuan);
      wid_finalStrategy->show();
 }
 bool YouXuanDockWidget::createConnetion()
@@ -460,4 +457,38 @@ bool YouXuanDockWidget::createConnetion()
                      "Click Cancel to exit."), QMessageBox::Cancel);
 
     }
+}
+void YouXuanDockWidget::closeEvent(QCloseEvent *event)
+{
+//    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+//    QTextCodec *codec =QTextCodec::codecForName("UTF-8");
+//    const char * strcaption = "提示";
+//    const char * strcontent = "是否对数据进行保存？" ;
+//    const char * strok= "是";
+//    const char * strno= "否";
+//    const char * strcancel = "取消";
+//    QString strCap=codec->toUnicode(strcaption);
+//    QString strCont=codec->toUnicode(strcontent);
+//    QString strOkbtn=codec->toUnicode(strok);
+//    QString strNobtn=codec->toUnicode(strno);
+//    QString strCancelbtn=codec->toUnicode(strcancel);
+
+//    int r=QMessageBox::question(this,strCap,strCont,
+//   strOkbtn,strNobtn);
+
+//    QMessageBox box(QMessageBox::warning,"strCap","strCont");
+//    box.setStandardButtons (QMessageBox::Ok|QMessageBox::Cancel);
+//    box.setButtonText (QMessageBox::Ok,strOkbtn);
+//    box.setButtonText (QMessageBox::Cancel,strCancelbtn);
+
+
+//    if (r==0)
+//    {
+        mapper->submit();
+        event->accept();
+//    }
+//    else
+//    {
+//        event->accept();
+//    }
 }
