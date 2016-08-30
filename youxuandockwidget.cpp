@@ -42,27 +42,33 @@ YouXuanDockWidget::YouXuanDockWidget(QWidget *parent) :
     connect( ui->btnPublicOpinion, SIGNAL(clicked()), this, SLOT( show_PublicOpinion() ) );
     connect( ui->btnGovOpinion, SIGNAL(clicked()), this, SLOT( show_GovOpinion() ) );
     connect( ui->btnFinalSolution, SIGNAL(clicked()), this, SLOT( show_FinalSolution() ) );
-    connect( ui->comboBoxXiangname, SIGNAL(currentIndexChanged()),this,SLOT(setSelection()));
-    connect( ui->comboBoxCunname, SIGNAL(currentIndexChanged()),this,SLOT(setSelection()));
+    connect( ui->comboBoxXiangname, SIGNAL(currentIndexChanged(int)),this,SLOT(setSelection(int)));
+    connect( ui->comboBoxCunname, SIGNAL(currentIndexChanged(int)),this,SLOT(setSelection(int)));
 
     if (!createConnection())
         return  ;
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+     QTextCodec *codec =QTextCodec::codecForName("UTF-8");
+
+    const char * strtable2 = "核心问题与整治策略";
+
+    QString tableName2=codec->toUnicode(strtable2);
     model_youxuan= new QSqlTableModel;
-    model_youxuan->setTable("test");
+    model_youxuan->setTable(tableName2);
     model_youxuan->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    model_youxuan->select();
+
 
     mapper = new QDataWidgetMapper(this);
     mapper->setModel(model_youxuan);
     mapper->setItemDelegate(new ComboBoxDelegate(this));
-    mapper->addMapping(ui->comboxKongxc, model_youxuan->fieldIndex("field3"));
-    mapper->addMapping(ui->comboxZhengzhi, model_youxuan->fieldIndex("field4"));
-    mapper->addMapping(ui->lineEditZonghushu, model_youxuan->fieldIndex("field5"));
-    mapper->addMapping(ui->lineEditTongyi, model_youxuan->fieldIndex("field6"));
-    mapper->addMapping(ui->lineEditFandui, model_youxuan->fieldIndex("field7"));
-    mapper->addMapping(ui->comboxGaizaoyiyuan, model_youxuan->fieldIndex("field8"));
+    mapper->addMapping(ui->comboxKongxc,6);
+    mapper->addMapping(ui->comboxZhengzhi, 7);
+    mapper->addMapping(ui->lineEditZonghushu, 8);
+    mapper->addMapping(ui->lineEditTongyi, 9);
+    mapper->addMapping(ui->lineEditFandui, 10);
+    mapper->addMapping(ui->comboxGaizaoyiyuan, 11);
 
-    mapper->toFirst();
+    setSelection(0);
 
 
     modelPro_Strategy= new QSqlTableModel;
@@ -77,7 +83,7 @@ YouXuanDockWidget::YouXuanDockWidget(QWidget *parent) :
     model_GovOpinion=new QSqlQueryModel;
    // wid_wenti_celue = new WenTi_CeLueForm(model_strategy,modelPro_Strategy);
 }
-void YouXuanDockWidget::setSelection()
+void YouXuanDockWidget::setSelection(int idx)
 {
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
     QTextCodec *codec =QTextCodec::codecForName("UTF-8");
@@ -93,15 +99,14 @@ void YouXuanDockWidget::setSelection()
 
     model_youxuan->setFilter(fullSql);
     model_youxuan->select();
-
-    mapper->setModel(model_youxuan);
-    mapper->setItemDelegate(new ComboBoxDelegate(this));
-    mapper->addMapping(ui->comboxKongxc, model_youxuan->fieldIndex("field3"));
-    mapper->addMapping(ui->comboxZhengzhi, model_youxuan->fieldIndex("field4"));
-    mapper->addMapping(ui->lineEditZonghushu, model_youxuan->fieldIndex("field5"));
-    mapper->addMapping(ui->lineEditTongyi, model_youxuan->fieldIndex("field6"));
-    mapper->addMapping(ui->lineEditFandui, model_youxuan->fieldIndex("field7"));
-    mapper->addMapping(ui->comboxGaizaoyiyuan, model_youxuan->fieldIndex("field8"));
+ //   mapper->setModel(model_youxuan);
+  //  mapper->setItemDelegate(new ComboBoxDelegate(this));
+//    mapper->addMapping(ui->comboxKongxc,6);
+//    mapper->addMapping(ui->comboxZhengzhi, 7);
+//    mapper->addMapping(ui->lineEditZonghushu, 8);
+//    mapper->addMapping(ui->lineEditTongyi, 9);
+//    mapper->addMapping(ui->lineEditFandui, 10);
+//    mapper->addMapping(ui->comboxGaizaoyiyuan, 11);
 
     mapper->toFirst();
 }

@@ -55,7 +55,7 @@ private slots:
     void show_PublicOpinion();
     void show_GovOpinion();
     void show_FinalSolution();
-    void setSelection();
+    void setSelection(int idx);
 private:
     bool createConnetion();
     QDataWidgetMapper *mapper;

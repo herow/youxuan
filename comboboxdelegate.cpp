@@ -3,7 +3,7 @@
 
 void ComboBoxDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
-       if(index.column() ==2||index.column() == 3||index.column() == 7) // 假如模型的第0列为公司名
+       if(index.column() ==6||index.column() == 7||index.column() == 11) // 假如模型的第0列为公司名
        {
            QComboBox *comboEditor = qobject_cast<QComboBox *>(editor);
            if (comboEditor)
@@ -21,7 +21,7 @@ void ComboBoxDelegate::setModelData(QWidget *editor,
                   QAbstractItemModel *model,
                   const QModelIndex &index) const
 {
-       if(index.column() ==2||index.column() == 3||index.column() == 7)
+       if(index.column() ==6||index.column() == 7||index.column() == 11)
        {
            QComboBox *comboBox = qobject_cast<QComboBox *>(editor);
            if(comboBox)
