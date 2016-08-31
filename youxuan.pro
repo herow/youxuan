@@ -30,7 +30,8 @@ SOURCES += main.cpp\
     horizontal_proxy_model.cpp \
     imageitem.cpp \
     informationwindow.cpp \
-    view.cpp
+    view.cpp \
+    mainwindow2.cpp
 
 HEADERS  += mainwindow.h \
     youxuanform.h \
@@ -50,7 +51,8 @@ HEADERS  += mainwindow.h \
     horizontal_proxy_model.h \
     imageitem.h \
     informationwindow.h \
-    view.h
+    view.h \
+    mainwindow2.h
 
 FORMS    += mainwindow.ui \
     youxuanform.ui \

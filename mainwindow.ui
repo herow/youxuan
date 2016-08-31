@@ -29,7 +29,14 @@
     </property>
     <addaction name="youxuanaction"/>
    </widget>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>微观形态设计</string>
+    </property>
+    <addaction name="microdesign"/>
+   </widget>
    <addaction name="actionYouxuan"/>
+   <addaction name="menu"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -43,6 +50,11 @@
   <action name="youxuanaction">
    <property name="text">
     <string>模式优选</string>
+   </property>
+  </action>
+  <action name="microdesign">
+   <property name="text">
+    <string>微观形态设计</string>
    </property>
   </action>
  </widget>
