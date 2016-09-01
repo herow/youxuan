@@ -53,6 +53,7 @@ class QLabel;
 class QListWidget;
 class QSqlTableModel;
 class QTableView;
+class QTextCodec;
 QT_END_NAMESPACE
 
 class MainWindow2 : public QMainWindow
@@ -89,14 +90,15 @@ private:
     QComboBox *artistView;
     QListWidget *trackList;
 
-    QLabel *iconLabel;
+    QLabel *detailLabel;
     QLabel *imageLabel;
     QLabel *profileLabel;
     QLabel *titleLabel;
 
-//    QDomDocument albumData;
+
     QFile *file;
     QSqlTableModel *model;
+    QTextCodec *codec;
 };
 
 #endif

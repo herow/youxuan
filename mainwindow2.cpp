@@ -57,11 +57,20 @@ MainWindow2::MainWindow2(QWidget *parent)
     model = new QSqlTableModel;
 
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
-    QTextCodec *codec =QTextCodec::codecForName("UTF-8");
+    codec =QTextCodec::codecForName("UTF-8");
     const char * strtablename = "微观形态设计";
     QString tablename=codec->toUnicode(strtablename);
 
+
+
+    const char * c_combo1 = "用地布局";
+    const char * c_type = "类型";
+    QString str_combo1=codec->toUnicode(c_combo1);
+    QString str_type=codec->toUnicode(c_type);
+    QString fullSql = QString( " `%1`='%2'" )
+                  .arg(str_type).arg(str_combo1);
     model->setTable(tablename);
+    model->setFilter(fullSql);
     model->select();
 
     QGroupBox *artists = createArtistGroupBox();
@@ -83,7 +92,10 @@ MainWindow2::MainWindow2(QWidget *parent)
     layout->addWidget(details, 0, 1, 2, 1);
 #if !defined(Q_OS_SYMBIAN) && !defined(Q_WS_MAEMO_5)
     layout->setColumnStretch(1, 1);
-    layout->setColumnMinimumWidth(0, 500);
+    layout->setColumnMinimumWidth(1, 500);
+
+    layout->setColumnStretch(0, 1);
+    layout->setColumnMinimumWidth(0, 200);
 #endif
 
     QWidget *widget = new QWidget;
@@ -95,11 +107,22 @@ MainWindow2::MainWindow2(QWidget *parent)
 #if !defined(Q_OS_SYMBIAN) && !defined(Q_WS_MAEMO_5)
     resize(850, 400);
 #endif
-    setWindowTitle(tr("Music Archive"));
+    setWindowTitle(tablename);
 }
 
 void MainWindow2::changeArtist(int row)
 {
+    const char * c_type = "类型";
+    //QString str_combo1=codec->toUnicode(c_combo1);
+    QString str_type=codec->toUnicode(c_type);
+    QString fullSql = QString( " `%1`='%2'" )
+                  .arg(str_type).arg(artistView->currentText());
+
+    model->setFilter(fullSql);
+    QModelIndex index = model->index(0,0);
+    showArtistProfile(index);
+     albumView->selectRow(0);
+
 //    if (row > 0) {
 //        QModelIndex index = model->relationModel(2)->index(row, 1);
 //        model->setFilter("artist = '" + index.data().toString() + '\'') ;
@@ -127,31 +150,48 @@ void MainWindow2::showArtistProfile(QModelIndex index)
 //    titleLabel->hide();
 //    trackList->hide();
 //    imageLabel->hide();
+    QModelIndex detailIndex=model->index(index.row(),index.column()+3);
+
+    QImage img;
+    if(! ( img.load("./"+model->data(detailIndex, Qt::EditRole).toString()) ) )
+    {
+        QMessageBox::information(this,
+                                 tr("warning"),
+                                 tr("unable to load image!"));
+
+        return ;
+    }
+    QImage imgScaled;
+    imgScaled=img.scaled(700,700,Qt::KeepAspectRatio,Qt::SmoothTransformation);
+
+    imageLabel->setPixmap(QPixmap::fromImage(imgScaled));
+
 }
 
 void MainWindow2::showAlbumDetails(QModelIndex index)
 {
-//    QSqlRecord record = model->record(index.row());
+    QModelIndex detailIndex=model->index(index.row(),index.column()+3);
 
-//    QString artist = record.value("artist").toString();
-//    QString title = record.value("title").toString();
-//    QString year = record.value("year").toString();
-//    QString albumId = record.value("albumid").toString();
+    QImage img;
+    if(! ( img.load("./"+model->data(detailIndex, Qt::EditRole).toString()) ) )
+    {
+        QMessageBox::information(this,
+                                 tr("warning"),
+                                 tr("unable to load image!"));
 
-//    showArtistProfile(indexOfArtist(artist));
-//    titleLabel->setText(tr("Title: %1 (%2)").arg(title).arg(year));
-//    titleLabel->show();
+        return ;
+    }
+    QImage imgScaled;
+    imgScaled=img.scaled(700,700,Qt::KeepAspectRatio,Qt::SmoothTransformation);
 
-//    QDomNodeList albums = albumData.elementsByTagName("album");
-//    for (int i = 0; i < albums.count(); i++) {
-//        QDomNode album = albums.item(i);
-//        if (album.toElement().attribute("id") == albumId) {
-//            getTrackList(album.toElement());
-//            break;
-//        }
-//    }
-//    if (!trackList->count() == 0)
-//        trackList->show();
+    imageLabel->setPixmap(QPixmap::fromImage(imgScaled));
+
+//    detailIndex=model->index(index.row(),index.column()+2);
+//    detailLabel->adjustSize();
+//    detailLabel->setWordWrap(true);
+//    detailLabel->setAlignment(Qt::AlignTop);
+//    detailLabel->setText(model->data(detailIndex, Qt::EditRole).toString());
+
 }
 
 //void MainWindow2::getTrackList(QDomNode album)
@@ -277,56 +317,82 @@ void MainWindow2::readAlbumData()
 
 QGroupBox* MainWindow2::createArtistGroupBox()
 {
-//    artistView = new QComboBox;
-//    artistView->setModel(model->relationModel(2));
-//    artistView->setModelColumn(1);
+    const char * c_combo1 = "公共设施配置";
+    const char * c_combo2 = "用地布局";
+    QString str_combo1=codec->toUnicode(c_combo1);
+    QString str_combo2=codec->toUnicode(c_combo2);
 
-//    connect(artistView, SIGNAL(currentIndexChanged(int)),
-//            this, SLOT(changeArtist(int)));
+    artistView = new QComboBox;
+    artistView->addItem(str_combo2);
+    artistView->addItem(str_combo1);
+    artistView->setCurrentIndex(0);
 
-    QGroupBox *box = new QGroupBox(tr("Artist"));
+    connect(artistView, SIGNAL(currentIndexChanged(int)),
+            this, SLOT(changeArtist(int)));
+    const char * strtablename = "类型";
+    QString type=codec->toUnicode(strtablename);
+    QGroupBox *box = new QGroupBox(type);
 
-//    QGridLayout *layout = new QGridLayout;
-//    layout->addWidget(artistView, 0, 0);
-//    box->setLayout(layout);
+    QGridLayout *layout = new QGridLayout;
+    layout->addWidget(artistView, 0, 0);
+    box->setLayout(layout);
 
    return box;
 }
 
 QGroupBox* MainWindow2::createAlbumGroupBox()
 {
-    QGroupBox *box = new QGroupBox(tr("Album"));
+    const char * c_type = "内容";
+    //QString str_combo1=codec->toUnicode(c_combo1);
+    QString str_type=codec->toUnicode(c_type);
+    QGroupBox *box = new QGroupBox(str_type);
 
     albumView = new QTableView;
     albumView->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    albumView->setSortingEnabled(true);
+//    albumView->setSortingEnabled(true);
     albumView->setSelectionBehavior(QAbstractItemView::SelectRows);
     albumView->setSelectionMode(QAbstractItemView::SingleSelection);
     albumView->setShowGrid(false);
     albumView->verticalHeader()->hide();
     albumView->setAlternatingRowColors(true);
     albumView->setModel(model);
-    adjustHeader();
+    albumView->hideColumn(1);
+    albumView->hideColumn(2);
+    albumView->hideColumn(3);
+   // albumView->resizeColumnToContents(0);
+    albumView->setColumnWidth(0,150);
 
-    QLocale locale = albumView->locale();
-    locale.setNumberOptions(QLocale::OmitGroupSeparator);
-    albumView->setLocale(locale);
+
+//    QLocale locale = albumView->locale();
+//    locale.setNumberOptions(QLocale::OmitGroupSeparator);
+//    albumView->setLocale(locale);
 
     connect(albumView, SIGNAL(clicked(QModelIndex)),
             this, SLOT(showAlbumDetails(QModelIndex)));
     connect(albumView, SIGNAL(activated(QModelIndex)),
             this, SLOT(showAlbumDetails(QModelIndex)));
 
-    QVBoxLayout *layout = new QVBoxLayout;
+    QHBoxLayout *layout = new QHBoxLayout;
     layout->addWidget(albumView, 0, 0);
-    box->setLayout(layout);
 
+
+//    detailLabel =new QLabel;
+//    detailLabel->setText("Content:");
+//    detailLabel->setMinimumWidth(300);
+
+//    layout->addWidget(detailLabel,0,0);
+    box->setLayout(layout);
+    albumView->selectRow(0);
     return box;
 }
 
 QGroupBox* MainWindow2::createDetailsGroupBox()
 {
-    QGroupBox *box = new QGroupBox(tr("Details"));
+    const char * c_type = "设计图";
+    //QString str_combo1=codec->toUnicode(c_combo1);
+    QString str_type=codec->toUnicode(c_type);
+    QGroupBox *box = new QGroupBox(str_type);
+
 
 //    profileLabel = new QLabel;
 //    profileLabel->setWordWrap(true);
@@ -343,7 +409,25 @@ QGroupBox* MainWindow2::createDetailsGroupBox()
     imageLabel = new QLabel;
     imageLabel->setWordWrap(true);
     imageLabel->setAlignment(Qt::AlignCenter);
-    imageLabel->setPixmap(QPixmap("./images/beijing.png"));
+//    imageLabel->setScaledContents(true);
+    imageLabel->setMaximumWidth(700);
+    QModelIndex detailIndex=model->index(0 ,3);
+
+    QImage img;
+    if(! ( img.load("./"+model->data(detailIndex, Qt::EditRole).toString()) ) ) //加载图像
+    {
+        QMessageBox::information(this,
+                                 tr("warning"),
+                                 tr("unable to load image!"));
+
+        return 0;
+    }
+    QImage imgScaled;
+    imgScaled=img.scaled(700,700,Qt::KeepAspectRatio,Qt::SmoothTransformation);
+//    QPixmap image = QPixmap("./"+model->data(detailIndex, Qt::EditRole).toString());
+//    tempPix.scaled(QSize(490, 300), Qt::KeepAspectRatio);
+    imageLabel->setPixmap(QPixmap::fromImage(imgScaled));
+   // imageLabel->setPixmap(QPixmap("./"+model->data(detailIndex, Qt::EditRole).toString()));
 
   //  trackList = new QListWidget;
 
