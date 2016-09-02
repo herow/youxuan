@@ -62,7 +62,7 @@ class MainWindow2 : public QMainWindow
 
 public:
     MainWindow2(QWidget *parent = 0);
-
+    ~MainWindow2();
 private slots:
     void about();
     void addAlbum();
@@ -88,7 +88,7 @@ private:
 
     QTableView *albumView;
     QComboBox *artistView;
-    QListWidget *trackList;
+ //   QListWidget *trackList;
 
     QLabel *detailLabel;
     QLabel *imageLabel;
@@ -96,7 +96,7 @@ private:
     QLabel *titleLabel;
 
 
-    QFile *file;
+  //  QFile *file;
     QSqlTableModel *model;
     QTextCodec *codec;
 };

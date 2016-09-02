@@ -103,13 +103,29 @@ MainWindow2::MainWindow2(QWidget *parent)
     setCentralWidget(widget);
   //  createMenuBar();
 
-    showImageLabel();
+  //  showImageLabel();
 #if !defined(Q_OS_SYMBIAN) && !defined(Q_WS_MAEMO_5)
     resize(850, 400);
 #endif
     setWindowTitle(tablename);
 }
+MainWindow2::~MainWindow2()
+{
+    delete model;
+    delete albumView;
+    delete artistView;
 
+
+    delete detailLabel;
+    delete imageLabel;
+    delete profileLabel;
+    delete titleLabel;
+
+
+
+
+
+}
 void MainWindow2::changeArtist(int row)
 {
     const char * c_type = "类型";
@@ -480,7 +496,7 @@ void MainWindow2::showImageLabel()
 //    iconLabel->hide();
 //    trackList->hide();
 
-    imageLabel->show();
+  //  imageLabel->show();
 }
 
 QModelIndex MainWindow2::indexOfArtist(const QString &artist)
